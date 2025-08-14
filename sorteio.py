@@ -1,6 +1,7 @@
 import streamlit as st
 import random
 from pathlib import Path
+import base64
 
 # -------- CONFIGURAÇÕES --------
 TITULO = "Escola Industrial - Sorteio de Cadeiras"
@@ -15,12 +16,18 @@ alunos = [
 
 st.set_page_config(page_title="Sorteio de Cadeiras", page_icon="🎯", layout="wide")
 
-# Centraliza logo com HTML
+# Função para converter imagem para base64
+def get_base64_image(img_path):
+    with open(img_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+# Centraliza logo
 if Path(LOGO_PATH).exists():
+    img_base64 = get_base64_image(LOGO_PATH)
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <img src="data:image/png;base64,{Path(LOGO_PATH).read_bytes().hex()}" width="180">
+            <img src="data:image/png;base64,{img_base64}" width="180">
         </div>
         """,
         unsafe_allow_html=True
@@ -32,8 +39,13 @@ else:
 st.markdown(f"<h1 style='text-align:center;color:#222;margin-top:10px;'>{TITULO}</h1>", unsafe_allow_html=True)
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# Botão de sorteio
-if st.button("🎲 Sortear Cadeiras", use_container_width=True):
+# Botão centralizado e menor
+col1, col2, col3 = st.columns([2, 1, 2])
+with col2:
+    sortear = st.button("🎲 Sortear Cadeiras")
+
+# Resultado do sorteio
+if sortear:
     sorteio = alunos.copy()
     random.shuffle(sorteio)
 
