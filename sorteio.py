@@ -100,5 +100,6 @@ with col2:
                 """,
                 unsafe_allow_html=True
             )
-else:
-    st.info("Clique em **🎲 Sortear Cadeiras** para gerar a distribuição.")
+    else:
+        # Esse bloco 'else' precisa estar dentro do 'with col2' para ser centralizado.
+        st.info("Clique em **🎲 Sortear Cadeiras** para gerar a distribuição.")
