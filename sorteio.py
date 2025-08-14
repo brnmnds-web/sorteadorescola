@@ -60,6 +60,10 @@ st.markdown("""
     hr {
         border-top: 2px solid #ccc;
     }
+    /* Estilo para o texto do st.info */
+    .st-emotion-cache-1218f60 { /* Seletor específico para o st.info */
+        color: #fff;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -114,5 +118,4 @@ with col2:
                 unsafe_allow_html=True
             )
     else:
-        # Esse bloco 'else' precisa estar dentro do 'with col2' para ser centralizado.
         st.info("Clique em **🎲 Sortear Cadeiras** para gerar a distribuição.")
