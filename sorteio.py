@@ -21,7 +21,7 @@ def get_base64_image(img_path):
     with open(img_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# CSS para centralizar e estilizar os elementos
+# CSS para estilizar os elementos
 st.markdown("""
 <style>
     .stButton > button {
@@ -34,8 +34,7 @@ st.markdown("""
         cursor: pointer;
         transition: background-color 0.3s;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: block;  /* Importante para que o 'margin: auto' funcione */
-        margin: 20px auto; /* Centraliza o botão horizontalmente */
+        width: 100%; /* Ocupa a largura total da coluna */
     }
     .stButton > button:hover {
         background-color: #45a049;
@@ -69,33 +68,37 @@ else:
 st.markdown(f"<h1>{TITULO}</h1>", unsafe_allow_html=True)
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# Botão centralizado com a função nativa do Streamlit
-if st.button("🎲 Sortear Cadeiras"):
-    # Resultado do sorteio
-    sorteio = alunos.copy()
-    random.shuffle(sorteio)
+# ---
+# Centraliza o botão usando st.columns
+col1, col2, col3 = st.columns([1, 1, 1])
 
-    for cadeira, aluno in enumerate(sorteio, start=1):
-        st.markdown(
-            f"""
-            <div style="
-                background-color:#f0f0f0;
-                padding:12px 16px;
-                margin-bottom:8px;
-                border-radius:10px;
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                box-shadow:0 1px 3px rgba(0,0,0,0.06);
-                max-width:800px;
-                margin-left:auto;
-                margin-right:auto;
-            ">
-                <span style="font-weight:700;font-size:17px;color:#333;">Cadeira {cadeira}</span>
-                <span style="font-size:17px;color:#0056b3;">{aluno}</span>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+with col2:
+    if st.button("🎲 Sortear Cadeiras", use_container_width=True):
+        # Resultado do sorteio
+        sorteio = alunos.copy()
+        random.shuffle(sorteio)
+
+        for cadeira, aluno in enumerate(sorteio, start=1):
+            st.markdown(
+                f"""
+                <div style="
+                    background-color:#f0f0f0;
+                    padding:12px 16px;
+                    margin-bottom:8px;
+                    border-radius:10px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+                    max-width:800px;
+                    margin-left:auto;
+                    margin-right:auto;
+                ">
+                    <span style="font-weight:700;font-size:17px;color:#333;">Cadeira {cadeira}</span>
+                    <span style="font-size:17px;color:#0056b3;">{aluno}</span>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 else:
     st.info("Clique em **🎲 Sortear Cadeiras** para gerar a distribuição.")
