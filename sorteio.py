@@ -21,7 +21,7 @@ def get_base64_image(img_path):
     with open(img_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# CSS para estilizar os elementos, incluindo o fundo da página
+# CSS para estilizar os elementos, incluindo o fundo da página e a linha separadora
 st.markdown("""
 <style>
     /* Altera a cor de fundo do corpo da página */
@@ -56,9 +56,10 @@ st.markdown("""
     .centered-logo {
         text-align: center;
     }
-    /* Estilo para a barra horizontal */
+    /* Estilo para a barra horizontal, agora na cor branca */
     hr {
-        border-top: 2px solid #ccc;
+        border-top: 2px solid #fff; /* Linha branca e mais espessa */
+        border-radius: 5px; /* Adiciona um estilo arredondado */
     }
     /* Estilo para o texto do st.info */
     .st-emotion-cache-1218f60 { /* Seletor específico para o st.info */
