@@ -7,10 +7,10 @@ import base64
 TITULO = "Escola Industrial - Sorteio de Cadeiras"
 LOGO_PATH = "logo.png"  # Caminho para a logo
 alunos = [
-    "Aluno 1", "Aluno 2", "Aluno 3", "Aluno 4",
-    "Aluno 5", "Aluno 6", "Aluno 7", "Aluno 8",
-    "Aluno 9", "Aluno 10", "Aluno 11", "Aluno 12",
-    "Aluno 13", "Aluno 14", "Aluno 15", "Aluno 16"
+    "Adriele Domeneghini", "Alexandre Pereira", "André Pompeu", "Daniel Fernandes",
+    "Expedito Mota", "Fabio Melo", "Floriano Correia", "Gabriel Messias",
+    "Gabriela Diógenes", "Indira Santana", "João Carlos Marques", "Milena Borges",
+    "Raphael Silva", "Ricardo de Jesus", "Samya Celestino", "Sandra Lucena"
 ]
 # -------------------------------
 
@@ -128,3 +128,4 @@ with col2:
             )
     else:
         st.info("Clique em **🎲 Sortear Cadeiras** para gerar a distribuição.")
+
