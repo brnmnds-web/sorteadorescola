@@ -56,9 +56,16 @@ st.markdown("""
     .centered-logo {
         text-align: center;
     }
+    /* Estilo para a barra horizontal */
+    .styled-hr {
+        border-top: 2px solid #fff;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
     /* Estilo para o texto do st.info */
-    .st-emotion-cache-1218f60 { /* Seletor específico para o st.info */
-        color: #fff;
+    .st-emotion-cache-1f04kmp {
+        color: #fff; /* Altera a cor do texto do aviso para branco */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -84,12 +91,7 @@ st.markdown(f"<h1>{TITULO}</h1>", unsafe_allow_html=True)
 # Linha branca estilizada com HTML e st.markdown
 st.markdown(
     """
-    <hr style="
-        border-top: 2px solid #fff;
-        border-radius: 5px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    ">
+    <hr class="styled-hr">
     """,
     unsafe_allow_html=True
 )
