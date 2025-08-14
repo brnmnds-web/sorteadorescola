@@ -34,10 +34,8 @@ st.markdown("""
         cursor: pointer;
         transition: background-color 0.3s;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: auto;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+        display: block;  /* Importante para que o 'margin: auto' funcione */
+        margin: 20px auto; /* Centraliza o botão horizontalmente */
     }
     .stButton > button:hover {
         background-color: #45a049;
@@ -72,7 +70,6 @@ st.markdown(f"<h1>{TITULO}</h1>", unsafe_allow_html=True)
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # Botão centralizado com a função nativa do Streamlit
-# Usamos a `st.button` e aplicamos o CSS personalizado acima
 if st.button("🎲 Sortear Cadeiras"):
     # Resultado do sorteio
     sorteio = alunos.copy()
