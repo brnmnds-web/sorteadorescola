@@ -39,10 +39,28 @@ else:
 st.markdown(f"<h1 style='text-align:center;color:#222;margin-top:10px;'>{TITULO}</h1>", unsafe_allow_html=True)
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# Botão centralizado e menor
-col1, col2, col3 = st.columns([2, 1, 2])
-with col2:
-    sortear = st.button("🎲 Sortear Cadeiras")
+# Botão centralizado com HTML
+button_html = """
+<div style='display: flex; justify-content: center; margin-bottom: 20px;'>
+    <form action="#" method="post">
+        <button style="
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;">
+            🎲 Sortear Cadeiras
+        </button>
+    </form>
+</div>
+"""
+# Aqui criamos uma variável para armazenar se o botão foi pressionado
+clicked = st.markdown(button_html, unsafe_allow_html=True)
+
+# Como o botão HTML não interage direto com Streamlit, usamos o botão nativo mas escondido
+sortear = st.button("hidden_sortear", key="sortear", help="hidden", type="primary", use_container_width=False)
 
 # Resultado do sorteio
 if sortear:
