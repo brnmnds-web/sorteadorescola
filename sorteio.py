@@ -21,12 +21,44 @@ def get_base64_image(img_path):
     with open(img_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
+# CSS para centralizar e estilizar os elementos
+st.markdown("""
+<style>
+    .stButton > button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .stButton > button:hover {
+        background-color: #45a049;
+    }
+    .stMarkdown h1 {
+        text-align: center;
+        color: #222;
+        margin-top: 10px;
+    }
+    .centered-logo {
+        text-align: center;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Centraliza logo
 if Path(LOGO_PATH).exists():
     img_base64 = get_base64_image(LOGO_PATH)
     st.markdown(
         f"""
-        <div style="text-align:center;">
+        <div class="centered-logo">
             <img src="data:image/png;base64,{img_base64}" width="180">
         </div>
         """,
@@ -36,34 +68,13 @@ else:
     st.warning("Logo não encontrada. Verifique o caminho em LOGO_PATH.")
 
 # Título centralizado
-st.markdown(f"<h1 style='text-align:center;color:#222;margin-top:10px;'>{TITULO}</h1>", unsafe_allow_html=True)
+st.markdown(f"<h1>{TITULO}</h1>", unsafe_allow_html=True)
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# Botão centralizado com HTML
-button_html = """
-<div style='display: flex; justify-content: center; margin-bottom: 20px;'>
-    <form action="#" method="post">
-        <button style="
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;">
-            🎲 Sortear Cadeiras
-        </button>
-    </form>
-</div>
-"""
-# Aqui criamos uma variável para armazenar se o botão foi pressionado
-clicked = st.markdown(button_html, unsafe_allow_html=True)
-
-# Como o botão HTML não interage direto com Streamlit, usamos o botão nativo mas escondido
-sortear = st.button("hidden_sortear", key="sortear", help="hidden", type="primary", use_container_width=False)
-
-# Resultado do sorteio
-if sortear:
+# Botão centralizado com a função nativa do Streamlit
+# Usamos a `st.button` e aplicamos o CSS personalizado acima
+if st.button("🎲 Sortear Cadeiras"):
+    # Resultado do sorteio
     sorteio = alunos.copy()
     random.shuffle(sorteio)
 
