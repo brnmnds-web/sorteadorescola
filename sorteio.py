@@ -21,7 +21,7 @@ def get_base64_image(img_path):
     with open(img_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# CSS para estilizar os elementos, incluindo o fundo da página e a linha separadora
+# CSS para estilizar os elementos, incluindo o fundo da página
 st.markdown("""
 <style>
     /* Altera a cor de fundo do corpo da página */
@@ -56,11 +56,6 @@ st.markdown("""
     .centered-logo {
         text-align: center;
     }
-    /* Estilo para a barra horizontal, agora na cor branca */
-    hr {
-        border-top: 2px solid #fff; /* Linha branca e mais espessa */
-        border-radius: 5px; /* Adiciona um estilo arredondado */
-    }
     /* Estilo para o texto do st.info */
     .st-emotion-cache-1218f60 { /* Seletor específico para o st.info */
         color: #fff;
@@ -84,9 +79,22 @@ else:
 
 # Título centralizado
 st.markdown(f"<h1>{TITULO}</h1>", unsafe_allow_html=True)
-st.markdown("<hr>", unsafe_allow_html=True)
 
 # ---
+# Linha branca estilizada com HTML e st.markdown
+st.markdown(
+    """
+    <hr style="
+        border-top: 2px solid #fff;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    ">
+    """,
+    unsafe_allow_html=True
+)
+# ---
+
 # Centraliza o botão usando st.columns
 col1, col2, col3 = st.columns([1, 1, 1])
 
